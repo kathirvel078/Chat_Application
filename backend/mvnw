@@ -1,0 +1,11 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Maven Wrapper Script for Unix
+# ----------------------------------------------------------------------------
+
+MAVEN_DIR="$(dirname "$0")/maven/apache-maven-3.9.9/bin/mvn"
+if [ -f "$MAVEN_DIR" ]; then
+  exec "$MAVEN_DIR" "$@"
+else
+  exec mvn "$@"
+fi
