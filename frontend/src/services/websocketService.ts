@@ -18,9 +18,11 @@ class WebSocketService {
       return this.connectionPromise;
     }
 
+    const wsEndpoint = import.meta.env.VITE_WS_URL || '/ws';
+
     this.connectionPromise = new Promise((resolve, reject) => {
       this.client = new Client({
-        webSocketFactory: () => new SockJS('/ws'),
+        webSocketFactory: () => new SockJS(wsEndpoint),
         connectHeaders: {
           Authorization: `Bearer ${token}`,
           token: token,
