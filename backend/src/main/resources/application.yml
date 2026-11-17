@@ -11,7 +11,7 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URI:mongodb://localhost:27017/chatdb}
-      auto-index-creation: true
+      auto-index-creation: false
     redis:
       url: ${REDIS_URL:}
       host: ${REDIS_HOST:localhost}
