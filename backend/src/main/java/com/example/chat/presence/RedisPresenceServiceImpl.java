@@ -61,9 +61,10 @@ public class RedisPresenceServiceImpl implements PresenceService, MessageListene
     public void init() {
         try {
             listenerContainer.addMessageListener(this, presenceTopic);
+            listenerContainer.start();
             log.info("Subscribed to Redis presence topic: {}", presenceTopic.getTopic());
         } catch (Exception ex) {
-            log.warn("Could not register Redis message listener, falling back to local memory: {}", ex.getMessage());
+            log.warn("Could not connect to Redis message listener, falling back to in-memory presence: {}", ex.getMessage());
         }
     }
 

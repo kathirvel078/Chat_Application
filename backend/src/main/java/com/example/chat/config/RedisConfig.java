@@ -118,7 +118,13 @@ public class RedisConfig {
 
     @Bean
     public RedisMessageListenerContainer redisMessageListenerContainer(RedisConnectionFactory connectionFactory) {
-        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer() {
+            @Override
+            public boolean isAutoStartup() {
+                // Do not crash startup if Redis is temporarily offline; lifecycle is handled gracefully
+                return false;
+            }
+        };
         container.setConnectionFactory(connectionFactory);
         return container;
     }
